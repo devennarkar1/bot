@@ -40,4 +40,5 @@ async def main():
     await app.run_polling()  # Start polling to listen for updates
 
 if __name__ == "__main__":
-    asyncio.run(main())  # Run the main function
+    # Remove asyncio.run and directly call the event loop here
+    main()  # Directly call the main function
