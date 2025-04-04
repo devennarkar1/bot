@@ -1,44 +1,38 @@
 import asyncio
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, CallbackContext, CallbackQueryHandler
+from telegram import Update
+from telegram.ext import Application, CommandHandler, CallbackContext, InlineKeyboardButton, InlineKeyboardMarkup
 
 TOKEN = "7617448736:AAE3E7Dcx_YRtOci2Dqoy3aT8qnr6XAInH8"  # Replace with your bot's token
 SECOND_MESSAGE = "This is the second message set by me!"  # Change this to your second message
 
-# Function to send the start button when a user starts the bot
+# This function will send the first and second messages
 async def start(update: Update, context: CallbackContext):
-    keyboard = [
-        [InlineKeyboardButton("Start", callback_data="start_button")]  # Button with callback_data "start_button"
-    ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-
-    # Send message with start button
-    await update.message.reply_text("Click the button to start!", reply_markup=reply_markup)
-
-# Function to handle the button press (user clicks the "Start" button)
-async def button(update: Update, context: CallbackContext):
-    query = update.callback_query
-    await query.answer()  # Answer the callback to remove the loading state on the button
-
     # Send the first message
-    await query.message.reply_text("Hi")
-
-    # Wait for 6 seconds before sending the second message
-    await asyncio.sleep(6)
-
-    # Send the second message after the delay
-    await query.message.reply_text(SECOND_MESSAGE)
+    await update.message.reply_text("Hi! Welcome to the bot! Click the start button to interact.")
+    
+    # Send the second message after 6 seconds
+    await asyncio.sleep(6)  # Wait for 6 seconds
+    await update.message.reply_text(SECOND_MESSAGE)
 
 async def main():
+    # Create the Application and pass the bot token
     app = Application.builder().token(TOKEN).build()
 
-    # Add handlers for /start and button callback
+    # Add command handler
     app.add_handler(CommandHandler("start", start))
-    app.add_handler(CallbackQueryHandler(button, pattern="start_button"))
 
-    print("Bot is running...")
-    await app.run_polling()  # Start polling to listen for updates
+    # Create inline keyboard with the start button
+    keyboard = [
+        [InlineKeyboardButton("Start", callback_data='start')]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    
+    # Send the start button when the user interacts with the bot
+    await app.bot.send_message(chat_id=update.message.chat_id, text="Welcome!", reply_markup=reply_markup)
 
+    # Start the polling
+    await app.run_polling()  # Start the polling to listen for updates
+
+# Ensure the main function is awaited correctly
 if __name__ == "__main__":
-    # Remove asyncio.run and directly call the event loop here
-    main()  # Directly call the main function
+    asyncio.run(main())  # Properly run the async main function
