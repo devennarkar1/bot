@@ -2,7 +2,7 @@ import asyncio
 from telegram import Update
 from telegram.ext import Application, CommandHandler, CallbackContext
 
-TOKEN = "YOUR_TELEGRAM_BOT_TOKEN"  # Replace with your bot's token
+TOKEN = "7617448736:AAE3E7Dcx_YRtOci2Dqoy3aT8qnr6XAInH8"  # Replace with your bot's token
 SECOND_MESSAGE = "This is the second message set by me!"  # Change this to your second message
 
 async def start(update: Update, context: CallbackContext):
