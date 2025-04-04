@@ -1,6 +1,6 @@
-import asyncio
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CommandHandler, CallbackContext
+import asyncio
 
 TOKEN = "7617448736:AAE3E7Dcx_YRtOci2Dqoy3aT8qnr6XAInH8"  # Replace with your bot's token
 SECOND_MESSAGE = "This is the second message set by me!"  # Change this to your second message
@@ -30,6 +30,8 @@ async def main():
     # Start the polling
     await app.run_polling()  # Start the polling to listen for updates
 
-# Ensure the main function is awaited correctly
+# This part will be executed when the script is run
 if __name__ == "__main__":
+    import nest_asyncio
+    nest_asyncio.apply()  # Fixes the issue with already running event loop
     asyncio.run(main())  # Properly run the async main function
