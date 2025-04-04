@@ -11,7 +11,7 @@ async def start(update: Update, context: CallbackContext):
     # Send the first message
     await update.message.reply_text("🚨 Want the link? Its easy! Just watch the video below for 90 seconds ⏱️ and make sure to hit that subscribe button 🔔. https://youtu.be/oeenz5JTaoo 😎 After that Link is visible")
     # Wait for 4 seconds
-    await asyncio.sleep(4)  
+    await asyncio.sleep(85)  
     
     # Send the second message after 4 seconds
     await update.message.reply_text(SECOND_MESSAGE)
