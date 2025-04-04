@@ -4,13 +4,12 @@ import asyncio
 import nest_asyncio  # This is the solution to the event loop issue
 
 TOKEN = "7617448736:AAE3E7Dcx_YRtOci2Dqoy3aT8qnr6XAInH8"  # Replace with your bot's token
-SECOND_MESSAGE = "This is the second message set by me!"  # Change this to your second message
+SECOND_MESSAGE = "🎯 Done? Here’s your link: https://t.me/+z0oxXjImMvg1NmNl . Enjoy! 😎"  # Change this to your second message
 
 # This function will send the first and second messages
 async def start(update: Update, context: CallbackContext):
     # Send the first message
-    await update.message.reply_text("Hi! Welcome to the bot!")
-    
+    await update.message.reply_text("🚨 Want the link? Its easy! Just watch the video below for 90 seconds ⏱️ and make sure to hit that subscribe button 🔔. https://youtu.be/oeenz5JTaoo 😎 After that Link is visible")
     # Wait for 4 seconds
     await asyncio.sleep(4)  
     
